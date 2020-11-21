@@ -15,6 +15,7 @@ class HorizantalPicker extends StatefulWidget {
   final Color activeItemTextColor;
   final Color passiveItemsTextColor;
   final String suffix;
+  final List<Widget> children;
   HorizantalPicker(
       {@required this.minValue,
       @required this.maxValue,
@@ -26,7 +27,8 @@ class HorizantalPicker extends StatefulWidget {
       this.cursorColor = Colors.red,
       this.activeItemTextColor = Colors.blue,
       this.passiveItemsTextColor = Colors.grey,
-      this.suffix})
+      this.suffix,
+      this.children})
       : assert(minValue < maxValue),
         assert(onChanged != null);
   @override
@@ -112,7 +114,7 @@ class _HorizantalPickerState extends State<HorizantalPicker> {
                     });
                     setState(() {});
                   },
-                  children: valueMap.map((Map curValue) {
+                  children: widget.minValue == null ? widget.children :valueMap.map((Map curValue) {
                     //print("q");
                     //print(widget.backgroundColor.toString());
                     return ItemWidget(curValue,
